@@ -12,7 +12,7 @@ def rank_over_time(data, coaster, park):
     rank = ranking_df["Rank"]
     y_values = [int(i) for i in rank]
     ax = plt.subplot()
-    plt.plot(year, rank)
+    plt.plot(year, rank, marker='o')
     ax.invert_yaxis()
     ax.set_yticks(y_values)
     ax.set_yticklabels(y_values)
@@ -23,24 +23,24 @@ def rank_over_time(data, coaster, park):
 
 #test case
 rank_over_time(wood, "El Toro", "Six Flags Great Adventure")
-
-
-
-
-
 plt.clf()
 
 # write function to plot rankings over time for 2 roller coasters here:
+def rank_comparison(data, coaster_1, park_1, coaster_2, park_2):
+    df_1 = data[(data["Name"] == coaster_1) & (data["Park"] == park_1)]
+    df_2 = data[(data["Name"] == coaster_2) & (data["Park"] == park_2)]
+    ax = plt.subplot()
+    plt.plot(df_1["Year of Rank"], df_1["Rank"], marker='o')
+    plt.plot(df_2["Year of Rank"], df_2["Rank"], marker='o')
+    ax.invert_yaxis()
+    plt.xlabel("Year")
+    plt.ylabel("Golden Ticket Ranking")
+    plt.title("Year-by-year ranking of " + coaster_1 + " and " + coaster_2)
+    plt.legend([coaster_1, coaster_2])
+    plt.show()
 
-
-
-
-
-
-
-
-
-
+#test case
+rank_comparison(wood, "El Toro", "Six Flags Great Adventure", "Boulder Dash", "Lake Compounce")
 plt.clf()
 
 # write function to plot top n rankings over time here:
