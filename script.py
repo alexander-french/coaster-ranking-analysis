@@ -1,18 +1,28 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# load rankings data here:
+#load rankings data here:
+wood = pd.read_csv('Golden_Ticket_Award_Winners_Wood.csv')
+steel = pd.read_csv('Golden_Ticket_Award_Winners_Steel.csv')
 
+#function to plot rankings over time for 1 roller coaster here:
+def rank_over_time(data, coaster, park):
+    ranking_df = data[(data["Name"] == coaster) & (data["Park"] == park)]
+    year = ranking_df["Year of Rank"]
+    rank = ranking_df["Rank"]
+    y_values = [int(i) for i in rank]
+    ax = plt.subplot()
+    plt.plot(year, rank)
+    ax.invert_yaxis()
+    ax.set_yticks(y_values)
+    ax.set_yticklabels(y_values)
+    plt.xlabel("Year")
+    plt.ylabel("Golden Ticket Ranking")
+    plt.title("Year-by-year ranking of " + coaster)
+    plt.show()
 
-
-
-
-# write function to plot rankings over time for 1 roller coaster here:
-
-
-
-
-
+#test case
+rank_over_time(wood, "El Toro", "Six Flags Great Adventure")
 
 
 
