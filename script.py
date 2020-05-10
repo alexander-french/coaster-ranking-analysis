@@ -59,16 +59,10 @@ def top_n(data, n):
 
 #test case
 top_n(wood, 5)
-
-
-
-
-
 plt.clf()
 
 # load roller coaster data here:
-
-
+coasters = pd.read_csv('roller_coasters.csv')
 
 # write function to plot histogram of column values here:
 
