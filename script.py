@@ -43,7 +43,7 @@ def rank_comparison(data, coaster_1, park_1, coaster_2, park_2):
 rank_comparison(wood, "El Toro", "Six Flags Great Adventure", "Boulder Dash", "Lake Compounce")
 plt.clf()
 
-# write function to plot top n rankings over time here:
+#function to plot top n rankings over time:
 def top_n(data, n):
     df = data[data["Rank"] <= n]
     ax = plt.subplot()
@@ -61,11 +61,11 @@ def top_n(data, n):
 top_n(wood, 5)
 plt.clf()
 
-# load roller coaster data here:
+#load roller coaster data here:
 coasters = pd.read_csv('roller_coasters.csv')
 print(coasters.head())
 
-# write function to plot histogram of column values here:
+#function to plot histogram of column values:
 def histogram(data, column):
     plt.hist(data[column].dropna(), bins=100)
     plt.xlabel(column)
@@ -75,50 +75,51 @@ def histogram(data, column):
 
 #test case
 histogram(coasters, "length")
-
-
-
-
-
-
-
 plt.clf()
 
-# write function to plot inversions by coaster at a park here:
-
-
-
-
-
-
-
-
-
-
+#function to plot inversions by coaster at a park:
+def inversion(data, park):
+    df = data[(data["park"] == park) & (data["num_inversions"] > 0)]
+    names = df["name"]
+    inversions = df["num_inversions"]
+    xvalues = range(len(names))
+    plt.bar(xvalues, inversions)
+    ax = plt.subplot()
+    ax.set_xticks(xvalues)
+    ax.set_xticklabels(names)
+    plt.ylabel("Number of inversions")
+    plt.xlabel("Coaster name")
+    plt.title("Number of inversion on each coaster")
+    plt.show()
+    
+#test case
+inversion(coasters, "Parc Asterix")
 plt.clf()
 
-# write function to plot pie chart of operating status here:
+#function to plot pie chart of operating status:
+def pie_chart(data):
+    operating = data[data["status"] == "status.operating"]
+    closed = data[data["status"] == "status.closed.definitely"]
+    status = [len(operating), len(closed)]
+    ax = plt.subplot()
+    ax.pie(status, autopct="%0.1f%%", labels=["Open", "Closed"])
+    ax.axis('equal')
+    plt.show()
 
-
-
-
-
-
-
-
-
-
+#test case
+pie_chart(coasters)
 plt.clf()
 
-# write function to create scatter plot of any two numeric columns here:
+#function to create scatter plot of any two numeric columns:
+def scatter(data, col1, col2):
+    column1 = data[col1]
+    column2 = data[col2]
+    plt.scatter(column1, column2, marker='x')
+    plt.xlabel(col1)
+    plt.ylabel(col2)
+    plt.title(col1 + " vs. " + col2)
+    plt.show()
 
-
-
-
-
-
-
-
-
-
+#test case
+scatter(coasters, "speed", "num_inversions")
 plt.clf()
