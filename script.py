@@ -63,11 +63,18 @@ plt.clf()
 
 # load roller coaster data here:
 coasters = pd.read_csv('roller_coasters.csv')
+print(coasters.head())
 
 # write function to plot histogram of column values here:
+def histogram(data, column):
+    plt.hist(data[column].dropna(), bins=100)
+    plt.xlabel(column)
+    plt.ylabel("Frequency")
+    plt.title("Distribution of roller coaster " + column + "s")
+    plt.show()
 
-
-
+#test case
+histogram(coasters, "length")
 
 
 
