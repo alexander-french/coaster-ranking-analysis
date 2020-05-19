@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#load rankings data here:
+#load rankings data:
 wood = pd.read_csv('Golden_Ticket_Award_Winners_Wood.csv')
 steel = pd.read_csv('Golden_Ticket_Award_Winners_Steel.csv')
 
@@ -103,6 +103,7 @@ def pie_chart(data):
     status = [len(operating), len(closed)]
     ax = plt.subplot()
     ax.pie(status, autopct="%0.1f%%", labels=["Open", "Closed"])
+    ax.set_title('Operating Status')
     ax.axis('equal')
     plt.show()
 
